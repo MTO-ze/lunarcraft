@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LunarCraft - Modern Business & Gaming</title>
+    <!-- FontAwesome icons for Instagram & WhatsApp -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif; /* A more modern font */
+        }
+        body {
+            /* ബ്രൗൺ കളർ തീം - Minimalist Brown Background */
+            background: linear-gradient(135deg, #3d2c1f 0%, #1a120b 100%);
+            color: #f1e9e3; /* Light cream text */
+            line-height: 1.6;
+            text-align: center;
+            min-height: 100vh;
+        }
+        header {
+            background-color: rgba(30, 20, 15, 0.6); /* Semi-transparent brown */
+            padding: 30px 20px;
+            border-bottom: 2px solid #a67c52; /* Brown accent border */
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        header h1 {
+            color: #d9b99b; /* Light Brown/Cream */
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .hero {
+            padding: 70px 20px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .hero h2 {
+            font-size: 2.3rem;
+            margin-bottom: 20px;
+            color: #e2d9d1;
+        }
+        .hero p {
+            color: #c9b9ae;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+        /* മോഡേൺ ബട്ടൺ ഗ്രൂപ്പ് */
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap; /* Mobile responsive */
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        /* വാട്ട്‌സ്ആപ്പ് ബട്ടൺ */
+        .btn-whatsapp {
+            background-color: #25d366;
+            color: white;
+        }
+        /* ഇൻസ്റ്റാഗ്രാം ബട്ടൺ */
+        .btn-instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+        }
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+        .services {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        /* മോഡേൺ കാർഡുകൾ (Glassmorphism look) */
+        .card {
+            background: rgba(45, 30, 25, 0.4);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(166, 124, 82, 0.2);
+            text-align: left;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        .card:hover {
+            border-color: rgba(166, 124, 82, 0.6);
+            background: rgba(45, 30, 25, 0.6);
+        }
+        .card h3 {
+            color: #d9b99b;
+            margin-bottom: 12px;
+            font-size: 1.5rem;
+        }
+        .card p {
+            color: #c9b9ae;
+            font-size: 1rem;
+        }
+        footer {
+            margin-top: 70px;
+            padding: 30px;
+            background-color: #1a120b;
+            color: #a69282;
+            font-size: 0.95rem;
+            border-top: 1px solid #3d2c1f;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>LunarCraft</h1>
+    </header>
+
+    <section class="hero">
+        <h2>Modern Digital Solutions</h2>
+        <p>നിങ്ങളുടെ ബിസിനസ്സിനും ഗെയിമിംഗിനും ആവശ്യമായ എല്ലാ മോഡേൺ സേവനങ്ങളും ഒരൊറ്റ കുടക്കീഴിൽ.</p>
+        
+        <div class="btn-group">
+            <!-- വാട്ട്‌സ്ആപ്പ് ലിങ്ക് (നിങ്ങളുടെ നമ്പർ മാറ്റുക) -->
+            <a href="https://wa.me/910000000000" class="btn btn-whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <!-- ഇൻസ്റ്റാഗ്രാം ലിങ്ക് (നിങ്ങളുടെ പ്രൊഫൈൽ പേര് മാറ്റുക) -->
+            <a href="https://www.instagram.com/your_instagram_username" class="btn btn-instagram" target="_blank">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+        </div>
+    </section>
+
+    <div class="services">
+        <div class="card">
+            <h3>Our Premium Services</h3>
+            <p>മികച്ച ക്രിയേറ്റീവ് ഡിസൈനുകൾ, വെബ്സൈറ്റ് വികസനം, കൂടാതെ ഗെയിമിംഗ് അപ്‌ഡേറ്റുകളും ഞങ്ങളിൽ നിന്ന് ലഭ്യമാണ്.</p>
+        </div>
+        <div class="card">
+            <h3>Connect with Us</h3>
+            <p>കൂടുതൽ വിവരങ്ങൾക്കും സപ്പോർട്ടിനുമായി ഞങ്ങളെ വാട്ട്‌സ്ആപ്പിലോ ഇൻസ്റ്റാഗ്രാമിലോ ബന്ധപ്പെടാം. ഞങ്ങളുടെ ടീം നിങ്ങളെ സഹായിക്കാൻ സന്നദ്ധരാണ്.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 LunarCraft. All rights reserved. <br> Powered by Mobile Web Creator.</p>
+    </footer>
+
+</body>
+</html>
