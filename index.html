@@ -16,6 +16,76 @@
     <title>Lunera Crafts | Surprise Gifts & Custom Hampers</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
+                /* Purchase Button Advanced Animation */
+        .advanced-buy-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #d4af37 0%, #ffd700 50%, #aa7c11 100%);
+            color: #120d0a;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1em;
+            margin: 20px auto;
+            width: 85%;
+            max-width: 320px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: goldenPulse 2s infinite alternate;
+        }
+
+        @keyframes goldenPulse {
+            0% {
+                box-shadow: 0 0 12px rgba(212, 175, 55, 0.4), 0 0 0 0 rgba(212, 175, 55, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 25px rgba(255, 215, 0, 0.8), 0 0 0 12px rgba(212, 175, 55, 0);
+            }
+        }
+
+        .btn-shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.6),
+                transparent
+            );
+            transform: skewX(-20deg);
+            animation: shineEffect 3s infinite;
+        }
+
+        @keyframes shineEffect {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
+        }
+
+        .btn-text {
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.5px;
+        }
+
+        .advanced-buy-btn:hover {
+            transform: translateY(-5px) scale(1.03);
+            background: linear-gradient(135deg, #ffd700 0%, #fff 50%, #d4af37 100%);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.6);
+        }
+
+        .advanced-buy-btn:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
         :root {
             --bg-primary: #120d0a;
             --bg-secondary: #1a130f;
