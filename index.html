@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunera Crafts | Handcrafted Gifts & Surprises</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-primary: #070503;
+            --accent-gold: #d4af37;
+            --accent-gold-bright: #ffd700;
+            --glass-bg: rgba(20, 14, 10, 0.85);
+            --glass-border: rgba(212, 175, 55, 0.3);
+            --text-light: #f5ebe6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 15px;
+            overflow-x: hidden;
+        }
+
+        /* HEADER & LOGO */
+        .logo-container {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .logo-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            object-fit: cover;
+        }
+
+        .brand-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent-gold-bright);
+            margin-top: 10px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            text-align: center;
+        }
+
+        .brand-subtitle {
+            text-align: center;
+            max-width: 340px;
+            color: #c4b5a5;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin: 10px 0 25px 0;
+        }
+
+        /* BUTTONS GROUP */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 280px;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .btn-main {
+            width: 100%;
+            padding: 13px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #ffd700, #b8860b);
+            color: #000;
+            border: none;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-outline {
+            background: rgba(20, 14, 10, 0.6);
+            color: var(--accent-gold-bright);
+            border: 1px solid var(--accent-gold);
+        }
+
+        /* GOLDEN SHIMMER CUSTOMIZE BUTTON */
+        .btn-shimmer {
+            position: relative;
+            width: 100%;
+            max-width: 280px;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, #d4af37, #aa7c11);
+            border: none;
+            border-radius: 50px;
+            color: #000;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            margin-bottom: 30px;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-shimmer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            animation: shimmer 2.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        /* SECTION TITLE */
+        .section-title {
+            color: var(--accent-gold-bright);
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .instruction-text {
+            color: #9c8c7c;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* 3D GIFT BOX UNBOXING EFFECT */
+        .scene {
+            width: 260px;
+            height: 260px;
+            perspective: 1000px;
+            cursor: pointer;
+            margin-bottom: 40px;
+        }
+
+        .gift-box-card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 3D Lid & Inner Photo Reveal */
+        .box-lid {
+            width: 85%;
+            height: 45px;
+            background: linear-gradient(135deg, #d4af37, #8a6d1c);
+            position: absolute;
+            top: 25px;
+            border-radius: 10px;
+            z-index: 3;
+            transition: transform 0.8s ease, opacity 0.5s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .box-body-content {
+            width: 80%;
+            height: 70%;
+            margin-top: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--accent-gold);
+            position: relative;
+            z-index: 1;
+        }
+
+        .box-body-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        /* Open State Animation */
+        .gift-box-card.open .box-lid {
+            transform: translateY(-90px) rotateX(-110deg);
+            opacity: 0.2;
+        }
+
+        .gift-box-card.open .box-body-content img {
+            transform: scale(1.1);
+        }
+
+        /* WHATSAPP FLOATING BUTTON */
+        .wa-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25d366;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+            z-index: 99;
+        }
+
+        /* FOOTER & STAFF MINI BUTTON */
+        footer {
+            margin-top: auto;
+            padding: 20px 0 10px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn-staff-mini {
+            background: transparent;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: var(--accent-gold);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-staff-mini:hover {
+            background: rgba(212, 175, 55, 0.15);
+        }
+
+        /* MODAL POPUP */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-box {
+            background: rgba(20, 14, 10, 0.95);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 330px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.4rem;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 11px;
+            margin-bottom: 12px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            color: #fff;
+            box-sizing: border-box;
+        }
+
+        .modal-submit {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #d4af37, #aa7c11);
+            border: none;
+            border-radius: 25px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LOGO -->
+    <div class="logo-container">
+        <img src="images/logo.jpg" alt="Lunera Crafts Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/100/1a120b/d4af37?text=Lunera'">
+    </div>
+
+    <h1 class="brand-title">Lunera Crafts</h1>
+    <p class="brand-subtitle">Handcrafted customized gifts, hampers & unique surprises made with love for your special occasions.</p>
+
+    <!-- ACTION BUTTONS -->
+    <div class="button-group">
+        <a href="https://wa.me/919544200349" class="btn-main btn-gold" target="_blank">
+            <i class="fa-solid fa-cart-shopping"></i> Purchase Now
+        </a>
+        <a href="#gallery" class="btn-main btn-outline">
+            <i class="fa-regular fa-image"></i> View Gallery ✨
+        </a>
+    </div>
+
+    <!-- CUSTOMIZE GIFT SHIMMER BUTTON -->
+    <a href="customize.html" class="btn-shimmer">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> Customize Gift ✨
+    </a>
+
+    <!-- 3D UNBOXING FEATURED CRAFT -->
+    <h2 class="section-title">Featured Craft</h2>
+    <p class="instruction-text">(Tap box to unbox 🎁)</p>
+
+    <div class="scene" onclick="toggleUnbox()">
+        <div class="gift-box-card" id="giftCard">
+            <div class="box-lid">🎁 Tap to Open</div>
+            <div class="box-body-content">
+                <img src="images/hamper1.jpg" alt="Custom Gift" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=400'">
+            </div>
+        </div>
+    </div>
+
+    <!-- WHATSAPP FLOATING BUTTON -->
+    <a href="https://wa.me/919544200349" class="wa-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- FOOTER WITH STAFF LOGIN BUTTON -->
+    <footer>
+        <button onclick="openStaffModal()" class="btn-staff-mini">
+            <i class="fa-solid fa-lock"></i> Staff Login
+        </button>
+    </footer>
+
+    <!-- STAFF MODAL -->
+    <div id="staffModal" class="modal-overlay">
+        <div class="modal-box">
+            <span onclick="closeStaffModal()" class="close-btn">&times;</span>
+            <h3 style="color: #d4af37; margin-bottom: 20px;">Staff Access</h3>
+            <input type="text" id="mainUsername" placeholder="Username" class="modal-input">
+            <input type="password" id="mainPassword" placeholder="Passcode" class="modal-input">
+            <button onclick="checkMainLogin()" class="modal-submit">Login</button>
+            <p id="mainErrorMsg" style="color: #ff4d4d; font-size: 0.8rem; display: none; margin-top: 10px;">
+                Invalid Username or Passcode!
+            </p>
+        </div>
+    </div>
+
+    <script>
+        /* 3D Unboxing Toggle */
+        function toggleUnbox() {
+            const card = document.getElementById('giftCard');
+            card.classList.toggle('open');
+        }
+
+        /* Staff Modal Scripts */
+        function openStaffModal() {
+            document.getElementById('staffModal').style.display = 'flex';
+        }
+
+        function closeStaffModal() {
+            document.getElementById('staffModal').style.display = 'none';
+        }
+
+        function checkMainLogin() {
+            const user = document.getElementById('mainUsername').value;
+            const pass = document.getElementById('mainPassword').value;
+
+            if (user === "staff" && pass === "lunera123") {
+                window.location.href = "staff-login.html";
+            } else {
+                document.getElementById('mainErrorMsg').style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
