@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Lunera Crafts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0705;
+            --accent-gold: #d4af37;
+            --accent-gold-bright: #ffd700;
+            --text-light: #f5ebe6;
+            --text-dim: #b8a598;
+            --glass-bg: rgba(20, 14, 10, 0.85);
+            --glass-border: rgba(212, 175, 55, 0.3);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: linear-gradient(-45deg, #070503, #140d08, #0f0a06, #050302);
+            color: var(--text-light);
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            padding: 30px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 2.2rem;
+            color: var(--accent-gold-bright);
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid var(--accent-gold);
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .card .price {
+            font-size: 1.25rem;
+            color: var(--accent-gold-bright);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .btn-order {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25d366;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .btn-back {
+            margin-top: 30px;
+            color: var(--accent-gold);
+            text-decoration: none;
+            border: 1px solid var(--accent-gold);
+            padding: 10px 24px;
+            border-radius: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="title">Our Products</h1>
+    <p class="subtitle">Select your favorite items and order directly via WhatsApp</p>
+
+    <div class="products-grid" id="shopProducts">
+        <!-- Default Item (You can keep or remove) -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=500" alt="Customized Gift Box">
+            <h3>Customized Gift Box</h3>
+            <div class="price">₹499</div>
+            <a href="https://wa.me/919544200349?text=I%20want%20to%20order%20Customized%20Gift%20Box" target="_blank" class="btn-order">
+                <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <a href="index.html" class="btn-back">← Back to Home</a>
+
+    <script>
+        function displayShopProducts() {
+            const container = document.getElementById('shopProducts');
+            let products = JSON.parse(localStorage.getItem('lunera_products')) || [];
+
+            products.forEach(p => {
+                const productHtml = `
+                    <div class="card">
+                        <img src="${p.img}" alt="${p.title}" onerror="this.src='https://via.placeholder.com/200/1a120b/d4af37?text=Lunera+Crafts'">
+                        <h3>${p.title}</h3>
+                        <div class="price">₹${p.price}</div>
+                        <a href="https://wa.me/919544200349?text=Hi,%20I%20want%20to%20order%20${encodeURIComponent(p.title)}%20(Price:%20₹${p.price})" target="_blank" class="btn-order">
+                            <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+                        </a>
+                    </div>
+                `;
+                container.innerHTML += productHtml;
+            });
+        }
+
+        displayShopProducts();
+    </script>
+</body>
+</html>
