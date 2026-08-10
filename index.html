@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunera Crafts | Handcrafted Gifts & Surprises</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-primary: #070503;
+            --accent-gold: #d4af37;
+            --accent-gold-bright: #ffd700;
+            --glass-bg: rgba(20, 14, 10, 0.85);
+            --glass-border: rgba(212, 175, 55, 0.3);
+            --text-light: #f5ebe6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 15px;
+        }
+
+        /* HEADER & LOGO */
+        .logo-container {
+            margin-top: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .logo-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            object-fit: cover;
+        }
+
+        .brand-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent-gold-bright);
+            margin-top: 10px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .brand-subtitle {
+            text-align: center;
+            max-width: 340px;
+            color: #c4b5a5;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin: 12px 0 25px 0;
+        }
+
+        /* MAIN ACTION BUTTONS */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 280px;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .btn-main {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #ffd700, #b8860b);
+            color: #000;
+            border: none;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-outline {
+            background: rgba(20, 14, 10, 0.6);
+            color: var(--accent-gold-bright);
+            border: 1px solid var(--accent-gold);
+            backdrop-filter: blur(5px);
+        }
+
+        /* CUSTOMIZE GIFT BUTTON (GOLDEN GRADIENT) */
+        .btn-customize-gold {
+            background: linear-gradient(135deg, #d4af37, #aa7c11);
+            color: #000;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            margin-bottom: 15px;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-customize-gold:active {
+            transform: scale(0.98);
+        }
+
+        /* FEATURED SECTION */
+        .section-title {
+            color: var(--accent-gold-bright);
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 2px;
+            background: var(--accent-gold);
+            margin: 6px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .instruction-text {
+            color: #9c8c7c;
+            font-size: 0.85rem;
+            margin: 12px 0 20px 0;
+        }
+
+        /* FEATURED CARD CONTAINER */
+        .featured-card {
+            width: 100%;
+            max-width: 320px;
+            height: 320px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+
+        .like-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #ff4d6d;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .product-img-box {
+            width: 80%;
+            height: 80%;
+            border-radius: 20px;
+            background: #e91e63;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(233, 30, 99, 0.4);
+        }
+
+        .product-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* WHATSAPP FLOATING BUTTON */
+        .wa-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25d366;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+            z-index: 99;
+        }
+
+        /* FOOTER & STAFF LOGIN */
+        footer {
+            margin-top: auto;
+            padding-top: 40px;
+            padding-bottom: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn-staff-mini {
+            background: transparent;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            color: var(--accent-gold);
+            padding: 5px 14px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .btn-staff-mini:hover {
+            opacity: 1;
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        /* STAFF LOGIN MODAL (POPUP) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-box {
+            background: rgba(20, 14, 10, 0.95);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 340px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.4rem;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 11px;
+            margin-bottom: 12px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            color: #fff;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+        }
+
+        .modal-submit {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #d4af37, #aa7c11);
+            border: none;
+            border-radius: 25px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LOGO & BRAND NAME -->
+    <div class="logo-container">
+        <!-- Replace logo.jpg with your logo image path if needed -->
+        <img src="images/logo.jpg" alt="Lunera Crafts Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/110/1a120b/d4af37?text=Lunera'">
+    </div>
+
+    <h1 class="brand-title">Lunera Crafts</h1>
+    
+    <p class="brand-subtitle">
+        Handcrafted customized gifts, hampers & unique surprises made with love for your special occasions.
+    </p>
+
+    <!-- TOP BUTTONS -->
+    <div class="button-group">
+        <a href="https://wa.me/919544200349" class="btn-main btn-gold" target="_blank">
+            <i class="fa-solid fa-cart-shopping"></i> Purchase Now
+        </a>
+        <a href="#gallery" class="btn-main btn-outline">
+            <i class="fa-regular fa-image"></i> View Gallery ✨
+        </a>
+    </div>
+
+    <!-- CUSTOMIZE GIFT BUTTON -->
+    <a href="customize.html" class="btn-customize-gold">
+        <i class="fa-solid fa-pen-to-square"></i> Customize Gift ✨
+    </a>
+
+    <!-- FEATURED CRAFT SECTION -->
+    <h2 class="section-title">Featured Craft</h2>
+    <p class="instruction-text">(Tilt phone for 3D effect or Tap to flip)</p>
+
+    <div class="featured-card">
+        <i class="fa-regular fa-heart like-icon"></i>
+        <div class="product-img-box">
+            <!-- Replace with your product image if available -->
+            <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=300" alt="Gift Box">
+        </div>
+    </div>
+
+    <!-- WHATSAPP FLOATING BUTTON -->
+    <a href="https://wa.me/919544200349" class="wa-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- FOOTER WITH MINI STAFF LOGIN BUTTON -->
+    <footer>
+        <button onclick="openStaffModal()" class="btn-staff-mini">
+            <i class="fa-solid fa-lock"></i> Staff Login
+        </button>
+    </footer>
+
+    <!-- STAFF LOGIN MODAL (POPUP) -->
+    <div id="staffModal" class="modal-overlay">
+        <div class="modal-box">
+            <span onclick="closeStaffModal()" class="close-btn">&times;</span>
+            
+            <h3 style="color: #d4af37; margin-bottom: 20px;">Staff Access</h3>
+            
+            <input type="text" id="mainUsername" placeholder="Username" class="modal-input">
+            <input type="password" id="mainPassword" placeholder="Passcode" class="modal-input">
+            
+            <button onclick="checkMainLogin()" class="modal-submit">Login</button>
+            
+            <p id="mainErrorMsg" style="color: #ff4d4d; font-size: 0.8rem; display: none; margin-top: 10px;">
+                Invalid Username or Password!
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function openStaffModal() {
+            document.getElementById('staffModal').style.display = 'flex';
+        }
+
+        function closeStaffModal() {
+            document.getElementById('staffModal').style.display = 'none';
+        }
+
+        function checkMainLogin() {
+            const user = document.getElementById('mainUsername').value;
+            const pass = document.getElementById('mainPassword').value;
+
+            // Default Staff Credentials
+            if (user === "staff" && pass === "lunera123") {
+                window.location.href = "staff-login.html";
+            } else {
+                document.getElementById('mainErrorMsg').style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
