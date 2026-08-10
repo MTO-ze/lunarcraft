@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunera Crafts | Surprise Gifts & Custom Hampers</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="1786177485136.png">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-primary: #0f0a07;
+            --bg-secondary: #1a120c;
+            --accent-gold: #d4af37;
+            --accent-gold-bright: #ffd700;
+            --text-light: #f5ebe6;
+            --text-dim: #b8a598;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #0b0705, #18100b, #130a05, #080503);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-light);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Ambient Glowing Background Orbs */
+        .bg-glow-1, .bg-glow-2 {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(110px);
+            opacity: 0.2;
+            z-index: -1;
+            animation: floatOrb 10s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+        .bg-glow-1 {
+            top: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: var(--accent-gold);
+        }
+        .bg-glow-2 {
+            bottom: -100px;
+            right: -100px;
+            width: 450px;
+            height: 450px;
+            background: #e1306c;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(70px, 60px) scale(1.25); }
+        }
+
+        /* Cursor Glow Effect */
+        .cursor-glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: width 0.3s, height 0.3s;
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Pulsing Animated Hero Logo */
+        .hero-logo {
+            width: 125px;
+            height: 125px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-gold);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+            margin-bottom: 22px;
+            object-fit: cover;
+            animation: pulseLogo 3s infinite ease-in-out, heroEntrance 1s ease-out;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-logo:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        @keyframes pulseLogo {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+            50% { transform: scale(1.06); box-shadow: 0 0 40px rgba(255, 215, 0, 0.6); }
+        }
+
+        /* Hero Entrance Animations */
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-gold-bright) 50%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+            animation: heroEntrance 1.2s ease-out;
+            letter-spacing: 1px;
+        }
+
+        .hero-subtitle {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            animation: heroEntrance 1.4s ease-out;
+        }
+
+        @keyframes heroEntrance {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Action Buttons Section */
+        .cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin: 35px 0;
+            animation: heroEntrance 1.6s ease-out;
+        }
+
+        /* Advanced Shimmer Purchase Button */
+        .btn-primary {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #d4af37 0%, #ffd700 50%, #aa7c11 100%);
+            color: #120d0a;
+            text-decoration: none;
+            padding: 16px 38px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1em;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: goldenPulse 2s infinite alternate;
+        }
+
+        @keyframes goldenPulse {
+            0% { box-shadow: 0 0 12px rgba(212, 175, 55, 0.4); }
+            100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.85); }
+        }
+
+        .btn-shine {
+            position: absolute;
+            top: 0; left: -100%;
+            width: 60%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            transform: skewX(-20deg);
+            animation: shine 2.8s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            20%, 100% { left: 200%; }
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 14px 38px rgba(255, 215, 0, 0.7);
+        }
+
+        /* Glassmorphism Gallery Button */
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-gold);
+            text-decoration: none;
+            border: 1px solid var(--accent-gold);
+            background: rgba(212, 175, 55, 0.08);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 15px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-gold);
+            color: #120d0a;
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Glassmorphism Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+            margin-top: 55px;
+            animation: heroEntrance 1.8s ease-out;
+        }
+
+        .feature-card {
+            background: rgba(26, 18, 12, 0.65);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 22px;
+            padding: 30px 20px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent-gold);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2.4rem;
+            color: var(--accent-gold);
+            margin-bottom: 14px;
+            display: inline-block;
+            transition: transform 0.4s ease, color 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.25) rotate(10deg);
+            color: var(--accent-gold-bright);
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        /* Social Media Floating Section */
+        .social-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            animation: heroEntrance 2s ease-out;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(26, 18, 12, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.18) translateY(-4px);
+            border-color: var(--accent-gold);
+            color: var(--accent-gold-bright);
+            box-shadow: 0 8px 22px rgba(212, 175, 55, 0.4);
+        }
+
+        footer {
+            margin-top: 45px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dynamic Cursor Glow Target -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Ambient Glowing Background -->
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <div class="container">
+        
+        <!-- Hero Section -->
+        <img src="1786177485136.png" alt="Lunera Crafts Logo" class="hero-logo">
+        <h1 class="hero-title">Lunera Crafts</h1>
+        <p class="hero-subtitle">Handcrafted customized gifts, hampers & unique surprises made with love for your special occasions.</p>
+
+        <!-- CTA Action Buttons -->
+        <div class="cta-group">
+            <a href="shop.html" class="btn-primary">
+                <span class="btn-shine"></span>
+                <span class="btn-text">🛒 Purchase Now</span>
+            </a>
+            <a href="gallery.html" class="btn-secondary">
+                <i class="fa-solid fa-images"></i> View Gallery ✨
+            </a>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fa-solid fa-gift feature-icon"></i>
+                <h3 class="feature-title">Custom Hampers</h3>
+                <p class="feature-desc">Tailor-made gift boxes designed for birthdays, festivals & celebrations.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-heart feature-icon"></i>
+                <h3 class="feature-title">Handmade with Love</h3>
+                <p class="feature-desc">Every piece is uniquely crafted with attention to details.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-brands fa-whatsapp feature-icon"></i>
+                <h3 class="feature-title">Easy Ordering</h3>
+                <p class="feature-desc">Direct 1-click ordering via WhatsApp for fast customization.</p>
+            </div>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="social-section">
+            <p style="color: var(--text-dim); font-size: 0.95rem;">Connect with us</p>
+            <div class="social-links">
+                <a href="https://instagram.com/Lunera_crafts" target="_blank" class="social-btn" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/919544200349" target="_blank" class="social-btn" title="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 Lunera Crafts. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <!-- Script for Cursor Glow Effect -->
+    <script>
+        const glow = document.getElementById('cursorGlow');
+        document.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+        document.addEventListener('touchmove', (e) => {
+            if(e.touches.length > 0) {
+                glow.style.left = e.touches[0].clientX + 'px';
+                glow.style.top = e.touches[0].clientY + 'px';
+            }
+        });
+    </script>
+
+</body>
+</html>
