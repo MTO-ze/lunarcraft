@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Portal | Lunera Crafts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <style>
+        :root {
+            --glass-bg: rgba(20, 14, 10, 0.85);
+            --glass-border: rgba(212, 175, 55, 0.3);
+            --accent-gold-bright: #ffd700;
+            --text-dim: #b8a598;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: #0a0705;
+            color: #f5ebe6;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container { max-width: 600px; width: 100%; }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 1.2rem;
+            color: var(--accent-gold-bright);
+            margin-bottom: 15px;
+        }
+
+        .form-group { margin-bottom: 15px; }
+
+        label { display: block; margin-bottom: 5px; color: var(--text-dim); font-size: 0.9rem; }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: #fff;
+            outline: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #000;
+        }
+
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .btn-delete {
+            background: #ff4d4d;
+            border: none;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h3><i class="fa-solid fa-user-shield"></i> Staff Portal</h3>
+            <a href="shop.html" style="color: var(--accent-gold-bright); text-decoration: none;">View Shop</a>
+        </div>
+
+        <div class="card">
+            <h2 class="title"><i class="fa-solid fa-plus"></i> Add Product to Live Shop</h2>
+            <form id="addProductForm">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="prodTitle" placeholder="e.g. Customized Gift Box" required>
+                </div>
+                <div class="form-group">
+                    <label>Price (₹)</label>
+                    <input type="number" id="prodPrice" placeholder="e.g. 499" required>
+                </div>
+                <div class="form-group">
+                    <label>Direct Image URL</label>
+                    <input type="text" id="prodImg" placeholder="https://i.ibb.co/..." required>
+                </div>
+                <button type="submit" class="btn-submit"><i class="fa-solid fa-cloud-arrow-up"></i> Save & Publish</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2 class="title"><i class="fa-solid fa-list"></i> Live Items in Shop</h2>
+            <div id="staffProductList">Loading products...</div>
+        </div>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBnY2pLD3ZN_xYsDSzaxMu0lNRz0_JHI4A",
+            authDomain: "luneracrafts-81eb5.firebaseapp.com",
+            projectId: "luneracrafts-81eb5",
+            storageBucket: "luneracrafts-81eb5.firebasestorage.app",
+            messagingSenderId: "528230740220",
+            appId: "1:528230740220:web:59bd5ca242723aab0ea779",
+            measurementId: "G-EBSLYF1848"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Add Product
+        document.getElementById('addProductForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('prodTitle').value;
+            const price = document.getElementById('prodPrice').value;
+            const img = document.getElementById('prodImg').value;
+
+            db.collection("products").add({
+                title: title,
+                price: price,
+                img: img,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then(() => {
+                alert('പ്രോഡക്റ്റ് ലൈവായി Shop-ൽ ആഡ് ആയിട്ടുണ്ട്!');
+                document.getElementById('addProductForm').reset();
+            })
+            .catch((error) => {
+                alert("Error: " + error.message);
+            });
+        });
+
+        // Realtime List Load
+        db.collection("products").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
+            const listDiv = document.getElementById('staffProductList');
+            listDiv.innerHTML = '';
+
+            if (snapshot.empty) {
+                listDiv.innerHTML = '<p style="color: var(--text-dim);">No items added yet.</p>';
+                return;
+            }
+
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                listDiv.innerHTML += `
+                    <div class="product-item">
+                        <div>
+                            <strong>${data.title}</strong> - ₹${data.price}
+                        </div>
+                        <button class="btn-delete" onclick="deleteProduct('${doc.id}')">Delete</button>
+                    </div>
+                `;
+            });
+        });
+
+        // Delete Product
+        function deleteProduct(id) {
+            if(confirm("ഈ പ്രോഡക്റ്റ് ഡിലീറ്റ് ചെയ്യണം എന്ന് ഉറപ്പാണോ?")) {
+                db.collection("products").doc(id).delete();
+            }
+        }
+    </script>
+</body>
+</html>
