@@ -164,7 +164,7 @@
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             })
             .then(() => {
-                alert('പ്രോഡക്റ്റ് ലൈവായി Shop-ൽ ആഡ് ആയിട്ടുണ്ട്!');
+                alert('add!');
                 document.getElementById('addProductForm').reset();
             })
             .catch((error) => {
@@ -197,7 +197,7 @@
 
         // Delete Product
         function deleteProduct(id) {
-            if(confirm("ഈ പ്രോഡക്റ്റ് ഡിലീറ്റ് ചെയ്യണം എന്ന് ഉറപ്പാണോ?")) {
+            if(confirm("add?")) {
                 db.collection("products").doc(id).delete();
             }
         }
