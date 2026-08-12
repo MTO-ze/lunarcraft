@@ -197,7 +197,7 @@
 
         // Delete Product
         function deleteProduct(id) {
-            if(confirm("add?")) {
+            if(confirm("really ?")) {
                 db.collection("products").doc(id).delete();
             }
         }
